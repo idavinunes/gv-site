@@ -113,8 +113,14 @@ class Component extends DCLogic {
   renderVals() {
     const s = this.state;
     const phone = this.props.phone ?? '(00) 00000-0000';
-    const tel0800 = this.props.tel0800 ?? '0800 042 0229';
-    const email = this.props.email ?? 'contato@mmsconsignados.com.br';
+    // ⚠️ NUNCA colocar contato REAL de outro cliente como fallback aqui.
+    // Este arquivo veio da MHM, que veio da MMS, e os fallbacks herdados eram o
+    // 0800 e o e-mail REAIS da MMS — em produção na MMS até hoje. Quando o
+    // props.json não chega, o fallback é o que aparece na tela: um cliente da GV
+    // ligaria para a central da irmã. Fallback tem que ser obviamente falso,
+    // para o furo gritar em vez de enganar. (Detalhes na nota do vault.)
+    const tel0800 = this.props.tel0800 ?? '0800 000 0000';
+    const email = this.props.email ?? 'contato@exemplo.com.br';
     const waDigits = (this.props.whatsapp ?? '5500000000000').replace(/\D/g, '');
     const wa = (msg) => 'https://wa.me/' + waDigits + (msg ? '?text=' + encodeURIComponent(msg) : '');
 
