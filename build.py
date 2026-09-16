@@ -42,6 +42,20 @@ def build() -> str:
     index = json.loads((SRC / 'assets' / 'assets.json').read_text(encoding='utf-8'))
 
     # 1) componente + props + favicons entram no template
+    #
+    # ⚠️ O runtime NAO entrega o data-props ao componente: `this.props` chega {}
+    # (verificado em 2026-09-16 instrumentando renderVals no browser). Por isso
+    # mexer no props.json nunca fazia efeito e o site exibia sempre o fallback
+    # hardcoded do component.js -- que, herdado da MMS, era o contato REAL dela.
+    #
+    # Conserto: os contatos sao resolvidos AQUI, em tempo de build, e injetados
+    # no component.js como PROPS_BUILD. O props.json volta a ser a fonte de verdade.
+    contatos = {k: (v.get('default', '') if isinstance(v, dict) else v)
+                for k, v in props.items() if not k.startswith('$')}
+    component = component.replace(
+        '/*{{PROPS_BUILD}}*/{}',
+        json.dumps(contatos, ensure_ascii=False))
+
     props_attr = json.dumps(props, ensure_ascii=False, separators=(',', ':')).replace('"', '&quot;')
     ic = icons()
     template = (page.replace('{{PROPS}}', props_attr)

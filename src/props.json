@@ -3,24 +3,25 @@
     "width": 1280,
     "height": 900
   },
+  "$doc": "Contatos da empresa. VAZIO = o campo nao aparece no site. Cada empresa tem o SEU contato: nunca reaproveitar numero/e-mail de outro cliente aqui.",
   "tel0800": {
     "editor": "text",
-    "default": "0800 000 0000",
+    "default": "",
     "tsType": "string"
   },
   "phone": {
     "editor": "text",
-    "default": "(00) 00000-0000",
+    "default": "",
     "tsType": "string"
   },
   "whatsapp": {
     "editor": "text",
-    "default": "5500000000000",
+    "default": "",
     "tsType": "string"
   },
   "email": {
     "editor": "text",
-    "default": "contato@gvconsignados.com.br",
+    "default": "",
     "tsType": "string"
   }
 }

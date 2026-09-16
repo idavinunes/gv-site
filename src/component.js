@@ -112,17 +112,41 @@ class Component extends DCLogic {
 
   renderVals() {
     const s = this.state;
-    const phone = this.props.phone ?? '(00) 00000-0000';
-    // ⚠️ NUNCA colocar contato REAL de outro cliente como fallback aqui.
-    // Este arquivo veio da MHM, que veio da MMS, e os fallbacks herdados eram o
-    // 0800 e o e-mail REAIS da MMS — em produção na MMS até hoje. Quando o
-    // props.json não chega, o fallback é o que aparece na tela: um cliente da GV
-    // ligaria para a central da irmã. Fallback tem que ser obviamente falso,
-    // para o furo gritar em vez de enganar. (Detalhes na nota do vault.)
-    const tel0800 = this.props.tel0800 ?? '0800 000 0000';
-    const email = this.props.email ?? 'contato@exemplo.com.br';
-    const waDigits = (this.props.whatsapp ?? '5500000000000').replace(/\D/g, '');
-    const wa = (msg) => 'https://wa.me/' + waDigits + (msg ? '?text=' + encodeURIComponent(msg) : '');
+
+    // Contatos resolvidos em TEMPO DE BUILD a partir do props.json (ver build.py).
+    // ⚠️ Necessário porque o runtime não entrega o data-props: this.props chega {}.
+    // Era isso que fazia o props.json parecer "sem efeito" e mantinha na tela o
+    // fallback herdado da MMS — o 0800 e o e-mail REAIS dela, em produção lá.
+    //
+    // Regra: cada empresa tem o SEU contato. Enquanto o dado real não existe, o
+    // campo NÃO é exibido (vazio some da tela) — melhor faltar do que mostrar
+    // número de outro ou número falso.
+    const P = Object.assign({}, /*{{PROPS_BUILD}}*/{}, this.props || {});
+    const val = (v) => {
+      if (v && typeof v === 'object') v = ('default' in v) ? v.default : '';
+      return v == null ? '' : String(v).trim();
+    };
+    const vazio = (v) => {
+      const t = val(v);
+      if (!t) return true;
+      // placeholder = só zeros/pontuação, ou e-mail de exemplo
+      if (/^[\s\-()+.0]*$/.test(t)) return true;
+      if (/@(exemplo|example)\./i.test(t)) return true;
+      return false;
+    };
+
+    const hasPhone = !vazio(P.phone);
+    const has0800  = !vazio(P.tel0800);
+    const hasEmail = !vazio(P.email);
+    const hasWa    = !vazio(P.whatsapp);
+
+    const phone   = hasPhone ? val(P.phone)   : '';
+    const tel0800 = has0800  ? val(P.tel0800) : '';
+    const email   = hasEmail ? val(P.email)   : '';
+    const waDigits = hasWa ? val(P.whatsapp).replace(/\D/g, '') : '';
+    const wa = (msg) => hasWa
+      ? 'https://wa.me/' + waDigits + (msg ? '?text=' + encodeURIComponent(msg) : '')
+      : '#';
 
     const n = +s.simPrazo;
     const isNovo = s.simMode === 'novo';
@@ -175,11 +199,19 @@ class Component extends DCLogic {
       goFaq: () => this.go('faq'),
 
       phone, email, tel0800,
-      tel0800Link: 'tel:+55' + tel0800.replace(/\D/g, ''),
+      hasPhone, has0800, hasEmail, hasWa,
+      // display:none quando o contato ainda não existe — o bloco some da tela
+      show0800: has0800 ? '' : 'display:none',
+      showPhone: hasPhone ? '' : 'display:none',
+      showEmail: hasEmail ? '' : 'display:none',
+      showWa: hasWa ? '' : 'display:none',
+      // coluna "Contato" do rodapé some inteira se não houver NENHUM contato
+      showContato: (has0800 || hasPhone || hasEmail) ? '' : 'display:none',
+      tel0800Link: has0800 ? 'tel:+55' + tel0800.replace(/\D/g, '') : '#',
       waLink: wa('Olá! Gostaria de uma consultoria sobre crédito consignado.'),
       waLinkSim: wa(simMsg),
       waLinkForm: wa(formMsg),
-      mailLink: 'mailto:' + email,
+      mailLink: hasEmail ? 'mailto:' + email : '#',
 
       isNovo, isReduzir: !isNovo,
       simValor: s.simValor, simPrazo: String(s.simPrazo), simSaldo: s.simSaldo, simCurParcela: s.simCurParcela,
