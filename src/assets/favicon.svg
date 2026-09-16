@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GV Consultoria">
+  <!-- Monograma GV em path, não em texto: favicon não herda as fontes da página.
+       Par G+V centrado no quadro: G ocupa ~x8-32, V ocupa ~x34-56, folga igual dos dois lados.
+       ⚠️ CORES PROVISÓRIAS — herdadas da MHM (preto quente + dourado).
+       Trocar pelas cores da GV quando o logo chegar, e regerar o favicon-32.png junto. -->
+  <rect width="64" height="64" rx="14" fill="#0E0A08"/>
+  <!-- G -->
+  <path d="M26.5 25.5 A10 10 0 1 0 26.5 38.5 L26.5 34 L21.5 34 L21.5 30 L30.5 30 L30.5 41
+           A14 14 0 1 1 30.5 23 Z" fill="#F4C958"/>
+  <!-- V -->
+  <path d="M33 18 H39 L44.5 37 L50 18 H56 L47.5 46 H41.5 Z" fill="#F4C958"/>
+</svg>
