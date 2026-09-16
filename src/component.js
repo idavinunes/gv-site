@@ -118,22 +118,16 @@ class Component extends DCLogic {
     // Era isso que fazia o props.json parecer "sem efeito" e mantinha na tela o
     // fallback herdado da MMS — o 0800 e o e-mail REAIS dela, em produção lá.
     //
-    // Regra: cada empresa tem o SEU contato. Enquanto o dado real não existe, o
-    // campo NÃO é exibido (vazio some da tela) — melhor faltar do que mostrar
-    // número de outro ou número falso.
+    // Regra: cada empresa tem o SEU contato. Campo SEM VALOR não é exibido
+    // (some da tela) — melhor faltar do que mostrar número de outro cliente.
+    // Número fictício (zeros) É exibido de propósito: no modelo de aprovação
+    // preenche o layout sem fingir ser real.
     const P = Object.assign({}, /*{{PROPS_BUILD}}*/{}, this.props || {});
     const val = (v) => {
       if (v && typeof v === 'object') v = ('default' in v) ? v.default : '';
       return v == null ? '' : String(v).trim();
     };
-    const vazio = (v) => {
-      const t = val(v);
-      if (!t) return true;
-      // placeholder = só zeros/pontuação, ou e-mail de exemplo
-      if (/^[\s\-()+.0]*$/.test(t)) return true;
-      if (/@(exemplo|example)\./i.test(t)) return true;
-      return false;
-    };
+    const vazio = (v) => !val(v);
 
     const hasPhone = !vazio(P.phone);
     const has0800  = !vazio(P.tel0800);

@@ -3,25 +3,25 @@
     "width": 1280,
     "height": 900
   },
-  "$doc": "Contatos da empresa. VAZIO = o campo nao aparece no site. Cada empresa tem o SEU contato: nunca reaproveitar numero/e-mail de outro cliente aqui.",
+  "$doc": "MODELO PARA APROVACAO VISUAL. Estes contatos sao FICTICIOS, so para o site nao ficar com buraco na tela. TROCAR pelos reais da GV antes de publicar. Nunca usar numero/e-mail de outro cliente aqui.",
   "tel0800": {
     "editor": "text",
-    "default": "",
+    "default": "0800 000 0000",
     "tsType": "string"
   },
   "phone": {
     "editor": "text",
-    "default": "",
+    "default": "(21) 0000-0000",
     "tsType": "string"
   },
   "whatsapp": {
     "editor": "text",
-    "default": "",
+    "default": "5521000000000",
     "tsType": "string"
   },
   "email": {
     "editor": "text",
-    "default": "",
+    "default": "contato@gvconsignados.com.br",
     "tsType": "string"
   }
 }
