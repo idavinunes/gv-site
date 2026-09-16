@@ -1,6 +1,6 @@
 {
   "b25ebf7c-5244-4bd0-a92b-d2e875f58dc5": {
-    "file": "logo-mhm.png",
+    "file": "gv-monograma.png",
     "mime": "image/png",
     "compressed": false
   },
@@ -57,6 +57,11 @@
   "528c77f8-878c-4f1e-b504-74ce86babb80": {
     "file": "plus-jakarta-sans-latin.woff2",
     "mime": "font/woff2",
+    "compressed": false
+  },
+  "a1f4c7e2-9b3d-4e88-2c61-7d905fa3b118": {
+    "file": "gv-logo.png",
+    "mime": "image/png",
     "compressed": false
   }
 }
