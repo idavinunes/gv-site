@@ -192,6 +192,13 @@ class Component extends DCLogic {
       goContato: () => this.go('contato'),
       goFaq: () => this.go('faq'),
 
+      // marca o item do menu da página atual (traço inferior via CSS .is-on)
+      navHome: s.page === 'home' ? 'is-on' : '',
+      navServicos: s.page === 'servicos' ? 'is-on' : '',
+      navSobre: s.page === 'sobre' ? 'is-on' : '',
+      navSimulador: s.page === 'simulador' ? 'is-on' : '',
+      navFaq: s.page === 'faq' ? 'is-on' : '',
+
       phone, email, tel0800,
       hasPhone, has0800, hasEmail, hasWa,
       // display:none quando o contato ainda não existe — o bloco some da tela
