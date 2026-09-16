@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 1100" width="990" height="1100" role="img" aria-label="Casal de aposentados ao entardecer">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#20180F"/>
+      <stop offset="0.6" stop-color="#2E2419"/>
+      <stop offset="1" stop-color="#171009"/>
+    </linearGradient>
+    <linearGradient id="sol" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F3DCA8"/>
+      <stop offset="1" stop-color="#C79B45"/>
+    </linearGradient>
+    <linearGradient id="figA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D8A0"/>
+      <stop offset="1" stop-color="#B58F42"/>
+    </linearGradient>
+    <linearGradient id="figB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E0BE7E"/>
+      <stop offset="1" stop-color="#93732F"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.68" cy="0.2" r="0.55">
+      <stop offset="0" stop-color="#F3DCA8" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#F3DCA8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="990" height="1100" fill="url(#ceu)"/>
+  <circle cx="690" cy="286" r="104" fill="url(#sol)" opacity="0.5"/>
+  <rect width="990" height="1100" fill="url(#glow)"/>
+
+  <!-- morros -->
+  <path d="M0 792 Q 250 700 500 776 T 990 742 L990 1100 L0 1100 Z" fill="#241B12" opacity="0.95"/>
+  <path d="M0 880 Q 300 806 590 868 T 990 846 L990 1100 L0 1100 Z" fill="#1A140D"/>
+
+  <!-- ================= casal =================
+       Desenhados como um bloco só: ombros que se sobrepõem,
+       cabeças inclinadas uma para a outra. Sem "braço-barra". -->
+
+  <!-- ELE (atrás, à esquerda) -->
+  <g>
+    <!-- tronco com ombro que avança para abraçar -->
+    <path d="M232 1000
+             L232 726
+             Q232 640 316 618
+             L372 604
+             Q404 598 432 612
+             L560 672
+             Q596 690 596 728
+             L596 1000 Z" fill="url(#figB)"/>
+    <!-- pescoço -->
+    <path d="M338 626 L338 566 L408 566 L408 630 Z" fill="url(#figB)"/>
+    <!-- cabeça levemente inclinada para a direita -->
+    <g transform="rotate(9 373 500)">
+      <ellipse cx="373" cy="500" rx="76" ry="86" fill="url(#figA)"/>
+      <!-- chapéu: copa + aba, assentado na cabeça -->
+      <path d="M297 452 Q 373 392 449 452 L449 462 Q373 418 297 462 Z" fill="url(#figB)"/>
+      <path d="M262 462 Q 373 424 484 462 Q 373 494 262 462 Z" fill="url(#figB)"/>
+    </g>
+  </g>
+
+  <!-- ELA (à frente, à direita, encostada no ombro dele) -->
+  <g>
+    <path d="M556 1000
+             L556 776
+             Q556 700 632 682
+             L688 670
+             Q724 664 752 682
+             L806 716
+             Q836 736 836 780
+             L836 1000 Z" fill="url(#figA)"/>
+    <path d="M652 690 L652 640 L716 640 L716 694 Z" fill="url(#figA)"/>
+    <!-- cabeça inclinada para a esquerda (apoiando nele) -->
+    <g transform="rotate(-13 684 582)">
+      <ellipse cx="684" cy="582" rx="66" ry="76" fill="url(#figB)"/>
+      <path d="M618 540 Q 684 488 750 540 L750 549 Q684 512 618 549 Z" fill="url(#figA)"/>
+      <path d="M588 549 Q 684 516 780 549 Q 684 578 588 549 Z" fill="url(#figA)"/>
+    </g>
+  </g>
+
+  <!-- sombra de contato entre os dois, dá a leitura de "juntos" -->
+  <path d="M556 776 Q 576 700 632 682 L 632 1000 L556 1000 Z" fill="#8A6E30" opacity="0.28"/>
+
+  <!-- base -->
+  <path d="M0 1010 Q 495 962 990 1010 L990 1100 L0 1100 Z" fill="#120C07"/>
+</svg>
