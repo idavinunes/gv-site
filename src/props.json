@@ -20,7 +20,7 @@
   },
   "email": {
     "editor": "text",
-    "default": "contato@mhmsolution.com.br",
+    "default": "contato@gvconsignados.com.br",
     "tsType": "string"
   }
 }
