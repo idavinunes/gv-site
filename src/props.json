@@ -11,7 +11,7 @@
   },
   "phone": {
     "editor": "text",
-    "default": "(21) 0000-0000",
+    "default": "(21) 98452-9039",
     "tsType": "string"
   },
   "whatsapp": {
