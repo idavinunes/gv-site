@@ -6,7 +6,7 @@
   "$doc": "MODELO PARA APROVACAO VISUAL. Estes contatos sao FICTICIOS, so para o site nao ficar com buraco na tela. TROCAR pelos reais da GV antes de publicar. Nunca usar numero/e-mail de outro cliente aqui.",
   "tel0800": {
     "editor": "text",
-    "default": "0800 000 0000",
+    "default": "0800 042 0926",
     "tsType": "string"
   },
   "phone": {
